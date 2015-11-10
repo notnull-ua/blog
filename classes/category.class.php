@@ -28,9 +28,9 @@ class category extends Core
             } else {
                 $result = DB::query("SELECT id, title, description, date, img_src FROM  articles WHERE category='$id_category'");
                 $this->getMessageQueryErr($result, __FUNCTION__);
-
-                while ($content = $result->fetch_object()) {
-                    printf("<article class='media'>
+                if ($result->num_rows > 0) {
+                    while ($content = $result->fetch_object()) {
+                        printf("<article class='media'>
                         <h2 class='media-heading'>%s</h2>
                         <p>%s</p>
                         <div class='media-left'>
@@ -42,6 +42,10 @@ class category extends Core
                             <p><a class='btn btn-default' href='?option=view&id_article=%s' role='button'>View details &raquo;</a></p>
                         </div>
                    </article>", $content->title, $content->date, $content->img_src, $content->description, $content->id);
+                    }
+                }
+                else {
+                    echo "В данной категории нет статтей";
                 }
 
 
