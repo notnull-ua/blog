@@ -3,3 +3,16 @@ body {
   padding-top: 50px;
   padding-bottom: 20px;
 }
+
+/*
+.img-article{
+  width: 30%;
+  height: 30%;
+  float: left;
+  margin-right: 10px;
+}*/
+
+.media .media-object{
+  max-height: 100px;
+
+}

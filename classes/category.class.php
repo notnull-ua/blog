@@ -3,10 +3,10 @@
 /**
  * Created by PhpStorm.
  * User: Vladislav
- * Date: 07.11.2015
- * Time: 23:42
+ * Date: 10.11.2015
+ * Time: 1:28
  */
-class main extends Core
+class category extends Core
 {
 
     public function getContent()
@@ -19,11 +19,18 @@ class main extends Core
         <div class="col-md-9 col-sm-9">';
 
         //динамическая часть
-        $result = DB::query("SELECT id, title, description, date, img_src FROM  articles ORDER BY date DESC");
-        $this->getMessageQueryErr($result, __FUNCTION__);
+        if (!$_GET['id_category']) {
+            echo "Неправильные данне для вывода статьи";
+        } else {
+            $id_category = (int)$_GET['id_category'];
+            if (!$id_category) {
+                echo('Incorrect ID');
+            } else {
+                $result = DB::query("SELECT id, title, description, date, img_src FROM  articles WHERE category='$id_category'");
+                $this->getMessageQueryErr($result, __FUNCTION__);
 
-        while ($content = $result->fetch_object()) {
-            printf("<article class='media'>
+                while ($content = $result->fetch_object()) {
+                    printf("<article class='media'>
                         <h2 class='media-heading'>%s</h2>
                         <p>%s</p>
                         <div class='media-left'>
@@ -34,13 +41,14 @@ class main extends Core
                             <p>%s </p>
                             <p><a class='btn btn-default' href='?option=view&id_article=%s' role='button'>View details &raquo;</a></p>
                         </div>
-                   </article>", $content->title,$content->date, $content->img_src, $content->description, $content->id);
-        }
+                   </article>", $content->title, $content->date, $content->img_src, $content->description, $content->id);
+                }
 
+
+            }
+        }
 
         //статическая часть
         echo "</div>";
-
-
     }
 }

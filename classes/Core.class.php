@@ -17,9 +17,7 @@ abstract class Core
     {
         //$query = "SELECT id_category, name_categoty FROM category";
         $result = DB::query("SELECT id_category, name_category FROM category");
-        if (!$result) {
-            exit("error of database\n" . DB::getMySQLiObject()->error);
-        }
+       $this->getMessageQueryErr($result,__FUNCTION__);
 
         echo '<div class="hidden-xs col-md-3 col-sm-3 " >
                 <h2>Categories</h2>
@@ -33,13 +31,17 @@ abstract class Core
         </div>";
     }
 
+    protected function getMessageQueryErr($result, $nameFunc){
+        if (!$result) {
+            exit("error of database \n" . DB::getMySQLiObject()->error ." in a method: ".$nameFunc);
+        }
+    }
+
     protected function getMenu()
     {
         //выборка с базы данных
         $result = DB::query("SELECT id_menu, name FROM menu");
-        if (!$result) {
-            exit("error of database\n" . DB::getMySQLiObject()->error);
-        }
+        $this->getMessageQueryErr($result, __FUNCTION__);
 
         //вывод статической части меню
         echo '<nav class="navbar navbar-inverse navbar-fixed-top">
