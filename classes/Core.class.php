@@ -13,13 +13,13 @@ abstract class Core
         include('header.php');
     }
 
-    protected function  getRightBar()
-    {
-        //$query = "SELECT id_category, name_categoty FROM category";
-        $result = DB::query("SELECT id_category, name_category FROM category");
-       $this->getMessageQueryErr($result,__FUNCTION__);
+    protected function  getRightBar(){
+        $query = "SELECT id_category, name_category FROM category";
+        $result = DB::query("$query");
+        $this->getMessageQueryErr($result,__FUNCTION__);
 
         echo '<div class="hidden-xs col-md-3 col-sm-3 " >
+<section>
                 <h2>Categories</h2>
                 <ul class="nav nav-pills nav-stacked">';
 
@@ -27,15 +27,17 @@ abstract class Core
             printf("<li role='presentation'><a href='?option=category&id_category=%s'>%s</a> </li>", $cat->id_category, $cat->name_category);
         };
         echo "  </ul>
-        </div>
+  </section>
         </div>";
+
     }
 
+
     protected function getMessageQueryErr($result, $nameFunc){
-        if (!$result) {
-            exit("error of database \n" . DB::getMySQLiObject()->error ." in a method: ".$nameFunc);
-        }
+    if (!$result) {
+        exit("error of database \n" . DB::getMySQLiObject()->error ." in a method: ".$nameFunc);
     }
+}
 
     protected function getMenu()
     {

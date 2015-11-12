@@ -16,7 +16,7 @@ $dbOptions = array(
 
 
 require "classes/DB.class.php";
-DB::init($dbOptions);
+
 require "classes/Core.class.php";
 
 
@@ -30,6 +30,7 @@ $file = 'classes/' . $class . '.class.php';
 if (file_exists("$file")) {
     include("$file");
     if (class_exists("$class")) {
+        DB::init($dbOptions);
         $obj = new $class;
         $obj->getBody();
     } else {
