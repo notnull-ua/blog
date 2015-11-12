@@ -3,22 +3,23 @@
 /**
  * Created by PhpStorm.
  * User: Vladislav
- * Date: 07.11.2015
- * Time: 23:07
+ * Date: 11.11.2015
+ * Time: 22:27
  */
-abstract class Core
-{
+abstract class Core_admin {
+
     protected function  getHeader()
     {
         include('header.php');
     }
 
     protected function  getRightBar(){
+
         $query = "SELECT id_category, name_category FROM category";
         $result = DB::query("$query");
         $this->getMessageQueryErr($result,__FUNCTION__);
 
-        echo '<div class="right-bar hidden-xs col-md-3 hidden-sm " >
+        echo '<div class="right-bar hidden-xs col-md-3 col-sm-3 " >
                 <section>
                 <h2>Categories</h2>
                 <ul class="nav nav-pills nav-stacked">';
@@ -26,18 +27,28 @@ abstract class Core
         while ($cat = $result->fetch_object()) {
             printf("<li role='presentation'><a href='?option=category&id_category=%s'>%s</a> </li>", $cat->id_category, $cat->name_category);
         };
+
+
         echo "  </ul>
-                 </section>
+        </section>
+        <section>
+        <h2>Админ-панель</h2>
+        <ul class='nav nav-pills nav-stacked'>
+         <li role='presentation'><a href='?option=edit_article'>Статьи</a> </li>
+        <li role='presentation'><a href='?option=edit_menu'>Меню</a> </li>
+        <li role='presentation'><a href='?option=edit_article'>Категории</a> </li>
+        </ul>
+        </section>
         </div>";
 
     }
 
 
     protected function getMessageQueryErr($result, $nameFunc){
-    if (!$result) {
-        exit("error of database \n" . DB::getMySQLiObject()->error ." in a method: ".$nameFunc);
+        if (!$result) {
+            exit("error of database \n" . DB::getMySQLiObject()->error ." in a method: ".$nameFunc);
+        }
     }
-}
 
     protected function getMenu()
     {
@@ -47,8 +58,8 @@ abstract class Core
 
         //вывод статической части меню
         echo '<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header ">
+    <div class="container">
+        <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
                     aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
@@ -68,7 +79,7 @@ abstract class Core
         };
 
         echo ' </ul>
-            <form class="navbar-form navbar-right " >
+            <form class="navbar-form navbar-right">
                 <div class="form-group">
                     <input type="text" placeholder="Email" class="form-control">
                 </div>

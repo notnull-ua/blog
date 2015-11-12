@@ -18,7 +18,7 @@ $dbOptions = array(
 require "classes/DB.class.php";
 
 require "classes/Core.class.php";
-
+require "classes/Core_admin.class.php";
 
 
 if (isset($_GET['option'])) {

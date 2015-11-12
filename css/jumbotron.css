@@ -16,3 +16,8 @@ body {
   max-height: 100px;
 
 }
+
+.right-bar section:not(:first-child) {
+  border-top: 1px solid grey;
+
+}
