@@ -26,11 +26,9 @@ class main extends Core
             printf("<article class='media'>
                         <h2 class='media-heading'>%s</h2>
                         <p>%s</p>
-                        <div class='media-left'>
-                            <img class='media-object'  src='%s' >
-                        </div>
-                        <div class='media-body'>
 
+                        <div class='media-body'>
+                            <img class='img-responsive'  src='%s' >
                             <p>%s </p>
                             <p><a class='btn btn-default' href='?option=view&id_article=%s' role='button'>View details &raquo;</a></p>
                         </div>

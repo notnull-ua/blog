@@ -101,6 +101,18 @@ abstract class Core_admin {
 
     abstract function getContent();
 
+    protected function getCategories(){
+        $query="SELECT id_category, name_category FROM category";
+        $result=DB::query($query);
+        $this->getMessageQueryErr($result, __FUNCTION__);
+        $row=array();
+        while($category = $result->fetch_assoc()){
+            $row[]=$category;
+        }
+        return $row;
+
+    }
+
     public function getBody()
     {
         $this->getHeader();
