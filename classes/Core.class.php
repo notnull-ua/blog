@@ -18,7 +18,7 @@ abstract class Core
         $result = DB::query("$query");
         $this->getMessageQueryErr($result,__FUNCTION__);
 
-        echo '<div class="right-bar hidden-xs col-md-3 hidden-sm " >
+        echo '<div class="right-bar col-md-3 " >
                 <section>
                 <h2>Categories</h2>
                 <ul class="nav nav-pills nav-stacked">';

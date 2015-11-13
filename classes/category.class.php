@@ -16,7 +16,7 @@ class category extends Core
         echo '<div class="container">
     <!-- Example row of columns -->
     <div class="row">
-        <div class="col-md-9 col-sm-9">';
+        <div class="col-md-9">';
 
         //динамическая часть
         if (!$_GET['id_category']) {

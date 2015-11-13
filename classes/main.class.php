@@ -16,7 +16,7 @@ class main extends Core
         echo '<div class="container">
     <!-- Example row of columns -->
     <div class="row">
-        <div class="col-md-9  col-xs-12">';
+        <div class="col-md-9">';
 
         //динамическая часть
         $result = DB::query("SELECT id, title, description, date, img_src FROM  articles ORDER BY date DESC");
