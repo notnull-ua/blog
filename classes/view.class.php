@@ -37,7 +37,7 @@ class view extends Core
                         <h2>%s</h2>
                         <p class='date'>%s</p>
                         <div>
-                            <img class='media-object'  src='%s' >
+                            <img class='img-responsive'  src='%s' >
                         </div>
 
 

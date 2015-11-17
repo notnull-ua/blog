@@ -5,6 +5,7 @@
  * Date: 07.11.2015
  * Time: 23:03
  */
+session_start();
 header("Content-Type: text/html; charset=utf-8");
 $dbOptions = array(
     'db_host' => 'localhost',

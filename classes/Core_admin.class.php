@@ -34,7 +34,7 @@ abstract class Core_admin {
         <section>
         <h2>Админ-панель</h2>
         <ul class='nav nav-pills nav-stacked'>
-         <li role='presentation'><a href='?option=edit_article'>Статьи</a> </li>
+         <li role='presentation'><a href='?option=admin'>Статьи</a> </li>
         <li role='presentation'><a href='?option=edit_menu'>Меню</a> </li>
         <li role='presentation'><a href='?option=edit_article'>Категории</a> </li>
         </ul>
@@ -46,8 +46,10 @@ abstract class Core_admin {
 
     protected function getMessageQueryErr($result, $nameFunc){
         if (!$result) {
+            return false;
             exit("error of database \n" . DB::getMySQLiObject()->error ." in a method: ".$nameFunc);
         }
+        return true;
     }
 
     protected function getMenu()
@@ -115,6 +117,9 @@ abstract class Core_admin {
 
     public function getBody()
     {
+        if($_POST){
+            $this->handlerForm();
+        }
         $this->getHeader();
         $this->getMenu();
         $this->getContent();
