@@ -21,6 +21,12 @@ class admin extends Core_admin
         $result = DB::query($query);
         $this->getMessageQueryErr($result,__FUNCTION__);
         echo "<a class='btn btn-success' role='button' href='?option=addArticle'>Добавить статью</a>";
+
+
+        if($_SESSION['result']){
+            echo $_SESSION['result'];
+            unset($_SESSION['result']);
+        }
         echo "<table class='table table-hover'>
                     <thead>
                     <tr>
@@ -35,10 +41,10 @@ class admin extends Core_admin
             printf("<tr>
                         <td>%s</td>
                         <td>
-                        <a href='?option=update&id_article'>%s</a>
+                        <a href='?option=updateArticle&id_article=%s'>%s</a>
                         </td>
-                        <td><a class='btn btn-primary btn-xs' href='?option=deleteArticle&id_article=%s'>Удалить</a></td>
-                    </tr>", $content->id, $content->title,$content->id);
+                        <td><a class='btn btn-primary btn-xs' href='?option=deleteArticle&del=%s'>Удалить</a></td>
+                    </tr>", $content->id,$content->id, $content->title,$content->id);
         }
         echo "
                     </thead>

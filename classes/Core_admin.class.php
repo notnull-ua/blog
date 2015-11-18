@@ -115,9 +115,19 @@ abstract class Core_admin {
 
     }
 
+    protected  function  getArticle($id){
+        $query="SELECT id, title, description, text, img_src, category FROM articles WHERE id = '$id' ";
+        $result=DB::query($query);
+        $this->getMessageQueryErr($result, __FUNCTION__);
+
+        $article = $result->fetch_assoc();
+
+        return $article;
+    }
+
     public function getBody()
     {
-        if($_POST){
+        if($_POST || $_GET['del']){
             $this->handlerForm();
         }
         $this->getHeader();

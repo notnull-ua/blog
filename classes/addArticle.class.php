@@ -69,9 +69,9 @@ protected function handlerForm(){
         }
         $img_src =  'images/'.$_FILES['img_src']['name'];
     }
-    else {
-        exit ("Необходимо выбрать изображение");
-    }
+//    else {
+//        exit ("Необходимо выбрать изображение");
+//    }
 
 
     $title = $_POST['title'];
@@ -89,8 +89,8 @@ protected function handlerForm(){
               VALUES ('$title', '$img_src', '$date', '$text', '$description', '$category')";
     $result=DB::query($query);
     if($this->getMessageQueryErr($result, __FUNCTION__)){
-        $_SESSION['result'] = "Изменение сохранены";
-        header("Location:?option=addArticle");
+        $_SESSION['result'] = "Статья добавлена";
+        header("Location:?option=admin");
         exit;
     }
 
