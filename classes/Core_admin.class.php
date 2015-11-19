@@ -8,6 +8,12 @@
  */
 abstract class Core_admin {
 
+    public function __construct(){
+        if(!$_SESSION['user']){
+            header("Location:?option=login");
+        }
+    }
+
     protected function  getHeader()
     {
         include('header.php');
@@ -81,15 +87,7 @@ abstract class Core_admin {
         };
 
         echo ' </ul>
-            <form class="navbar-form navbar-right">
-                <div class="form-group">
-                    <input type="text" placeholder="Email" class="form-control">
-                </div>
-                <div class="form-group">
-                    <input type="password" placeholder="Password" class="form-control">
-                </div>
-                <button type="submit" class="btn btn-success">Sign in</button>
-            </form>
+
         </div>
         <!--/.navbar-collapse -->
     </div>
@@ -124,6 +122,17 @@ abstract class Core_admin {
 
         return $article;
     }
+
+    protected  function  getItemsMenu($id){
+        $query="SELECT id_menu, name, text_menu FROM menu WHERE id_menu = '$id' ";
+        $result=DB::query($query);
+        $this->getMessageQueryErr($result, __FUNCTION__);
+
+        $menu = $result->fetch_assoc();
+
+        return $menu;
+    }
+
 
     public function getBody()
     {

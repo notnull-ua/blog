@@ -92,6 +92,9 @@ abstract class Core
 
     public function getBody()
     {
+        if($_POST){
+            $this->handlerForm();
+        }
         $this->getHeader();
         $this->getMenu();
         $this->getContent();
