@@ -6,7 +6,7 @@
  * Date: 12.11.2015
  * Time: 14:00
  */
-class admin extends Core_admin
+class edit_category extends Core_admin
 {
 
 
@@ -17,10 +17,10 @@ class admin extends Core_admin
     <div class="row">
         <div class="col-md-9">';
 
-        $query = "SELECT id, title FROM articles";
+        $query = "SELECT id_category, name_category FROM category";
         $result = DB::query($query);
         $this->getMessageQueryErr($result,__FUNCTION__);
-        echo "<a class='btn btn-success' role='button' href='?option=addArticle'>Добавить статью</a>";
+        echo "<a class='btn btn-success' role='button' href='?option=addCategory'>Добавить категорию</a>";
 
 
         if($_SESSION['result']){
@@ -29,25 +29,24 @@ class admin extends Core_admin
         }
         echo "<table class='table table-hover'>
                     <thead>
-                        <tr>
-                        <th>Id</th>
-                        <th>Заголовок</th>
-                        <th></th>
-                        </tr>
+                    <tr>
+                    <th>Id</th>
+                    <th>Заголовок</th>
+                    <th></th>
                     </thead>
+                    </tr>
+
                     ";
         while ($content = $result->fetch_object()) {
-            //printf("<p><span>%s</span><a href=''>%s</a></p>");
             printf("<tr>
                         <td>%s</td>
                         <td>
-                        <a href='?option=updateArticle&id_article=%s'>%s</a>
+                        <a href='?option=updateCategory&id_category=%s'>%s</a>
                         </td>
-                        <td><a class='btn btn-primary btn-xs' href='?option=deleteArticle&del=%s'>Удалить</a></td>
-                    </tr>", $content->id,$content->id, $content->title,$content->id);
+                        <td><a class='btn btn-primary btn-xs' href='?option=deleteCategory&del=%s'>Удалить</a></td>
+                    </tr>", $content->id_category,$content->id_category,$content->name_category,$content->id_category);
         }
         echo "
-
                     </table>
                     </div>";
     }

@@ -42,7 +42,7 @@ abstract class Core_admin {
         <ul class='nav nav-pills nav-stacked'>
          <li role='presentation'><a href='?option=admin'>Статьи</a> </li>
         <li role='presentation'><a href='?option=edit_menu'>Меню</a> </li>
-        <li role='presentation'><a href='?option=edit_article'>Категории</a> </li>
+        <li role='presentation'><a href='?option=edit_category'>Категории</a> </li>
         </ul>
         </section>
         </div>";
@@ -131,6 +131,15 @@ abstract class Core_admin {
         $menu = $result->fetch_assoc();
 
         return $menu;
+    }
+    protected  function  getItemsCategory($id){
+        $query="SELECT id_category, name_category FROM category WHERE id_category = '$id' ";
+        $result=DB::query($query);
+        $this->getMessageQueryErr($result, __FUNCTION__);
+
+        $category = $result->fetch_assoc();
+
+        return $category;
     }
 
 

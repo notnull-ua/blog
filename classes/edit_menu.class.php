@@ -29,12 +29,12 @@ class edit_menu extends Core_admin
         }
         echo "<table class='table table-hover'>
                     <thead>
-                    <tr>
-                    <th>Id</th>
-                    <th>Заголовок</th>
-                    <th></th>
-                    </tr>
-
+                        <tr>
+                        <th>Id</th>
+                        <th>Заголовок</th>
+                        <th></th>
+                        </tr>
+                    </thead>
                     ";
         while ($content = $result->fetch_object()) {
             //printf("<p><span>%s</span><a href=''>%s</a></p>");
@@ -47,7 +47,7 @@ class edit_menu extends Core_admin
                     </tr>", $content->id_menu,$content->id_menu, $content->name,$content->id_menu);
         }
         echo "
-                    </thead>
+
                     </table>
                     </div>";
     }
