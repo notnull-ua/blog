@@ -86,9 +86,9 @@ abstract class Core_admin {
             printf("<li><a href='?option=menu&id_menu=%s'>%s</a></li>", $menu->id_menu, $menu->name);
         };
 
-        echo ' </ul>
-
-        </div>
+        echo ' </ul>';
+        echo '<a href="?option=login&exit=true" class="btn btn-danger navbar-btn navbar-right">Выйти</a>';
+        echo'
         <!--/.navbar-collapse -->
     </div>
 </nav>';

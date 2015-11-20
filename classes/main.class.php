@@ -37,7 +37,8 @@ class main extends Core
 
 
         //статическая часть
-        echo "</div>";
+        echo "</div>
+";
 
 
     }

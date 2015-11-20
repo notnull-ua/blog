@@ -41,7 +41,7 @@ abstract class Core
 
     protected function getMenu()
     {
-        //выборка с базы данных
+        //выборка с базы данныхz
         $result = DB::query("SELECT id_menu, name FROM menu");
         $this->getMessageQueryErr($result, __FUNCTION__);
 
@@ -67,20 +67,47 @@ abstract class Core
             printf("<li><a href='?option=menu&id_menu=%s'>%s</a></li>", $menu->id_menu, $menu->name);
         };
 
-        echo ' </ul>
-            <form class="navbar-form navbar-right " >
-                <div class="form-group">
-                    <input type="text" placeholder="Email" class="form-control">
-                </div>
-                <div class="form-group">
-                    <input type="password" placeholder="Password" class="form-control">
-                </div>
-                <button type="submit" class="btn btn-success">Sign in</button>
-            </form>
-        </div>
+        echo ' </ul>';
+
+if (!isset($_SESSION['user']))
+echo '<button class="btn btn-success navbar-btn navbar-right" data-toggle="modal" data-target="#login">Войти</button>';
+        else echo '<a href="?option=login&exit=true" class="btn btn-danger navbar-btn navbar-right">Выйти</a>';
+
+        echo '
         <!--/.navbar-collapse -->
     </div>
-</nav>';
+</nav>
+                    <!--modal dialog-->
+                <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Авторизация</h4>
+                      </div>
+                      <div class="modal-body">
+
+                        <form id="data"  action="javascript:void(null);" method="post">
+                            <div class="form-group">
+                                <label for="title">Логин:</label>
+                                <input type="text" name="login" class="form-control" id="login" placeholder="Логин" required  >
+                            </div>
+                            <div class="form-group">
+                                <label for="text">Пароль:</label>
+                                <input type="password" name="password" class="form-control" id="password" placeholder="Пароль" required  >
+                            </div>
+                            <div class="result"></div>
+                         </form>
+
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                        <button id="singIn" type="submit" form="data" class="btn btn-primary">Войти</button>
+                      </div>
+                    </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->';
     }
 
     protected function getFooter()

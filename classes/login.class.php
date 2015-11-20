@@ -9,6 +9,16 @@
 class login extends Core
 {
 
+    public function __construct(){
+        if($_SESSION['user']){
+            header("Location:?option=admin");
+        }
+        if(isset($_GET['exit'])&&$_GET['exit']==true){
+            session_destroy();
+            header("Location:?option=main");
+        }
+    }
+
     public function getContent()
     {
 
