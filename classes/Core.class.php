@@ -27,7 +27,17 @@ abstract class Core
             printf("<li role='presentation'><a href='?option=category&id_category=%s'>%s</a> </li>", $cat->id_category, $cat->name_category);
         };
         echo "  </ul>
-                 </section>
+                 </section>";
+                 if(isset($_SESSION['user']))
+                 echo"<section>
+        <h2>Админ-панель</h2>
+        <ul class='nav nav-pills nav-stacked'>
+         <li role='presentation'><a href='?option=admin'>Статьи</a> </li>
+        <li role='presentation'><a href='?option=edit_menu'>Меню</a> </li>
+        <li role='presentation'><a href='?option=edit_category'>Категории</a> </li>
+        </ul>
+        </section>";
+        echo"
         </div>";
 
     }
