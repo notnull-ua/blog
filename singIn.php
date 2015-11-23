@@ -6,17 +6,11 @@
  * Time: 1:08
  */
 session_start();
-require_once 'classes/DB.class.php';
+require 'classes/DB.class.php';
 require_once 'classes/Core.class.php';
+require_once 'settings.php';
 
-$dbOptions = array(
-    'db_host' => 'localhost',
-    'db_user' => 'root',
-    'db_pass' => '',
-    'db_name' => 'blog_db'
-);
-
-DB::init($dbOptions);
+//DB::init($dbOptions);
 class singIn extends  Core {
     public function getContent(){}
 

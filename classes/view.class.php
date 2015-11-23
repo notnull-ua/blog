@@ -54,4 +54,9 @@ class view extends Core
         //статическая часть
         echo "</div>";
     }
+
+    protected function getComments(){
+
+        $result = DB::query();
+    }
 }

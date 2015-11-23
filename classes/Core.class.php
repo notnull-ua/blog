@@ -37,6 +37,7 @@ abstract class Core
         <li role='presentation'><a href='?option=edit_category'>Категории</a> </li>
         </ul>
         </section>";
+
         echo"
         </div>";
 
