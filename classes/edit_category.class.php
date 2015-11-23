@@ -6,6 +6,7 @@
  * Date: 12.11.2015
  * Time: 14:00
  */
+
 class edit_category extends Core_admin
 {
 
@@ -39,11 +40,11 @@ class edit_category extends Core_admin
                     ";
         while ($content = $result->fetch_object()) {
             printf("<tr>
-                        <td>%s</td>
+                        <td width='10px'>%s</td>
                         <td>
                         <a href='?option=updateCategory&id_category=%s'>%s</a>
                         </td>
-                        <td><a class='btn btn-primary btn-xs' href='?option=deleteCategory&del=%s'>Удалить</a></td>
+                        <td align='right'><a class='btn btn-primary btn-xs' href='?option=deleteCategory&del=%s'>Удалить</a></td>
                     </tr>", $content->id_category,$content->id_category,$content->name_category,$content->id_category);
         }
         echo "

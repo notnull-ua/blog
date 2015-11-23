@@ -6,6 +6,7 @@
  * Date: 10.11.2015
  * Time: 0:26
  */
+
 class view extends Core
 {
     public function getContent(){
@@ -43,20 +44,33 @@ class view extends Core
 
                             <p>%s </p>
 
-
+                            <div  id='id_article' hidden>%s</div>
                    </article>", $article->title,$article->date, $article->img_src, $article->text, $article->id);
             }
         }
 
 
-
+        $this->getComments($id_article,0,5);
 
         //статическая часть
         echo "</div>";
     }
 
-    protected function getComments(){
+    protected function getComments($id_article, $start, $step){
+        $result=Comments::getComments($id_article, $start, $step);
 
-        $result = DB::query();
+echo "<hr/><div class='comments'>";
+        foreach($result as $key=>$value){
+            printf("
+                    <div class='comment'>
+                        <span class='date'>%s</span>
+                        <h4 class='author'>%s</h4>
+                        <p class='text'>%s</p>
+                    </div>
+                ", $value[date],$value[author], $value[text]);
+        }
+        echo "</div>";
+        echo "<button class='btn btn-primary btn-lg next-comments'>Показать еще</button>";
+
     }
 }

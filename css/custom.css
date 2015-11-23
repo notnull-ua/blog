@@ -21,3 +21,20 @@ body {
   border-top: 1px solid grey;
 
 }
+
+.next, .next-comments {
+  /*margin-left: 50%;*/
+  margin: 0 auto;
+  display: block;
+}
+
+ .img-responsive {
+  padding-bottom: 20px;
+  margin: 0 auto;
+}
+ footer {
+   text-align: center;
+ }
+ .date {
+    float: right;
+ }

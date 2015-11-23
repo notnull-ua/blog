@@ -45,9 +45,9 @@ abstract class Core
 
 
     protected function getMessageQueryErr($result, $nameFunc){
-    if (!$result) {
-        exit("error of database \n" . DB::getMySQLiObject()->error ." in a method: ".$nameFunc);
-    }
+        if (!$result) {
+            exit("error of database \n" . DB::getMySQLiObject()->error . " in a method: " . $nameFunc);
+        }
 }
 
     protected function getMenu()
@@ -80,9 +80,9 @@ abstract class Core
 
         echo ' </ul>';
 
-if (!isset($_SESSION['user']))
-echo '<button class="btn btn-success navbar-btn navbar-right" data-toggle="modal" data-target="#login">Войти</button>';
-        else echo '<a href="?option=login&exit=true" class="btn btn-danger navbar-btn navbar-right">Выйти</a>';
+        if (!isset($_SESSION['user']))
+        echo '<button class="btn btn-success navbar-btn navbar-right" data-toggle="modal" data-target="#login">Войти</button>';
+                else echo '<a href="?option=login&exit=true" class="btn btn-danger navbar-btn navbar-right">Выйти</a>';
 
         echo '
         <!--/.navbar-collapse -->

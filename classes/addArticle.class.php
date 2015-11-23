@@ -75,6 +75,7 @@ protected function handlerForm(){
 
 
     $title = $_POST['title'];
+    //todo - date must have time
     $date = date ("y-m-d", time());
     $description = $_POST['description'];
     $text = $_POST['text'];

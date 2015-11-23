@@ -39,11 +39,11 @@ class edit_menu extends Core_admin
         while ($content = $result->fetch_object()) {
             //printf("<p><span>%s</span><a href=''>%s</a></p>");
             printf("<tr>
-                        <td>%s</td>
+                        <td width='20px'>%s</td>
                         <td>
                         <a href='?option=updateMenu&id_menu=%s'>%s</a>
                         </td>
-                        <td><a class='btn btn-primary btn-xs' href='?option=deleteMenu&del=%s'>Удалить</a></td>
+                        <td align='right'><a class='btn btn-primary btn-xs' href='?option=deleteMenu&del=%s'>Удалить</a></td>
                     </tr>", $content->id_menu,$content->id_menu, $content->name,$content->id_menu);
         }
         echo "
