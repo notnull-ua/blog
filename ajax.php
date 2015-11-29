@@ -5,7 +5,7 @@
  * Date: 23.11.2015
  * Time: 20:05
  */
-require_once "classes/Articles.class.php";
+require_once "classes/articles.class.php";
 require_once "classes/Comments.class.php";
 try {
 

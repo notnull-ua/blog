@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.0.10.10
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Ноя 24 2015 г., 13:48
+-- Время создания: Ноя 30 2015 г., 01:38
 -- Версия сервера: 5.6.26
 -- Версия PHP: 5.6.12
 
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- База данных: `blog_db`
@@ -26,15 +26,16 @@ SET time_zone = "+00:00";
 -- Структура таблицы `articles`
 --
 
-CREATE TABLE `articles` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `articles` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `text` text NOT NULL,
   `date` date NOT NULL,
   `img_src` varchar(255) NOT NULL,
-  `category` tinyint(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `category` tinyint(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Дамп данных таблицы `articles`
@@ -55,10 +56,11 @@ INSERT INTO `articles` (`id`, `title`, `description`, `text`, `date`, `img_src`,
 -- Структура таблицы `category`
 --
 
-CREATE TABLE `category` (
-  `id_category` tinyint(3) UNSIGNED NOT NULL,
-  `name_category` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `category` (
+  `id_category` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `name_category` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_category`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Дамп данных таблицы `category`
@@ -77,25 +79,65 @@ INSERT INTO `category` (`id_category`, `name_category`) VALUES
 -- Структура таблицы `comments`
 --
 
-CREATE TABLE `comments` (
-  `id_comment` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `comments` (
+  `id_comment` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `author` varchar(30) NOT NULL,
   `text` varchar(255) NOT NULL,
-  `date` date NOT NULL,
-  `id_article` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `date` datetime NOT NULL,
+  `id_article` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id_comment`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=46 ;
 
 --
 -- Дамп данных таблицы `comments`
 --
 
 INSERT INTO `comments` (`id_comment`, `author`, `text`, `date`, `id_article`) VALUES
-(1, 'Admin', 'The first comment by Admin', '2015-11-24', 3),
-(2, 'Admin', 'The second comment by Admin', '2015-11-24', 3),
-(3, 'Vlad', 'Hello world', '2015-11-24', 3),
-(4, 'Zhenja', 'How are you?', '2015-11-24', 3),
-(5, 'Stive', 'Nice job', '2015-11-24', 3),
-(6, 'Garry', 'I have some money', '2015-11-23', 3);
+(1, 'Admin', 'The first comment by Admin', '2015-11-24 00:00:00', 3),
+(2, 'Admin', 'The second comment by Admin', '2015-11-24 00:00:00', 3),
+(3, 'Vlad', 'Hello world', '2015-11-24 00:00:00', 3),
+(4, 'Zhenja', 'How are you?', '2015-11-24 00:00:00', 3),
+(5, 'Stive', 'Nice job', '2015-11-24 00:00:00', 3),
+(6, 'Garry', 'I have some money', '2015-11-23 00:00:00', 3),
+(7, 'drerdf', 'dfdfd', '2015-11-28 00:00:00', 0),
+(8, 'dffgf', 'dgfhg', '2015-11-28 00:00:00', 0),
+(9, 'dffgf', 'dgfhg', '2015-11-28 00:00:00', 0),
+(10, 'dfdf', 'sfdfdg\r\n\r\n', '2015-11-28 00:00:00', 0),
+(11, 'dfdf', 'dfdfdf', '2015-11-28 00:00:00', 0),
+(12, 'dfdf', 'dfdfdf', '2015-11-28 00:00:00', 0),
+(13, 'dfdf', 'dfdfdf', '2015-11-28 00:00:00', 0),
+(14, 'dfdf', 'dfdfdf', '2015-11-28 00:00:00', 0),
+(15, 'dfdf', 'dfdfdf', '2015-11-28 00:00:00', 0),
+(16, 'dfdf', 'dfdfdf', '2015-11-28 00:00:00', 3),
+(17, '5454`45', '54654\r\n', '2015-11-28 00:00:00', 3),
+(18, 'comment', 'dfkjnfjgnflm;l,lkmoklm\r\n', '2015-11-29 00:00:00', 5),
+(19, 'вта', 'вошаалп', '2015-11-29 00:00:00', 7),
+(20, 'вта', 'вошаалп', '2015-11-29 00:00:00', 7),
+(21, '125', 'ksdnklfgjnfk', '2015-11-29 00:00:00', 7),
+(22, '125', 'ksdnklfgjnfk', '2015-11-29 00:00:00', 7),
+(23, 'dfdfd', 'dfggf', '2015-11-29 00:00:00', 7),
+(24, 'dfdfd', 'dfggf', '2015-11-29 00:00:00', 7),
+(25, 'dfgf', 'djfbgjhf', '2015-11-29 00:00:00', 7),
+(26, 'dfgf', 'djfbgjhf', '2015-11-29 00:00:00', 7),
+(27, 'dfgf', 'djfbgjhf', '2015-11-29 00:00:00', 7),
+(28, 'zzzz', 'zzz', '2015-11-29 00:00:00', 7),
+(29, 'zzzz', 'zzz', '2015-11-29 00:00:00', 7),
+(30, 'zzzz', 'zzz', '2015-11-29 00:00:00', 7),
+(31, 'влад', 'хочу теслу', '2015-11-29 00:00:00', 6),
+(32, 'влад', 'хочу теслу', '2015-11-29 00:00:00', 6),
+(33, 'влад', 'хочу теслу', '2015-11-29 00:00:00', 6),
+(34, 'dff', 'dfdf', '2015-11-29 00:00:00', 6),
+(35, '77777', '77777', '2015-11-29 00:00:00', 6),
+(36, '77777', '77777', '2015-11-29 00:00:00', 6),
+(37, '77777', '77777', '2015-11-29 00:00:00', 6),
+(38, '77777', '77777', '2015-11-29 00:00:00', 6),
+(39, 'dkjfbjdb', 'kdbfjhdbfh', '2015-11-29 00:00:00', 1),
+(40, 'dkjfbjdb', 'kdbfjhdbfh', '2015-11-29 00:00:00', 1),
+(41, 'oooo', 'ppppppp', '2015-11-29 00:00:00', 3),
+(42, 'tttt', 'iijooin', '2015-11-29 00:00:00', 1),
+(43, '4454', '45r454', '2015-11-29 12:11:29', 6),
+(44, 'sdfdfd', 'dkfjdnjkfn', '2015-11-29 01:11:39', 6),
+(45, '[[[[', '[[]][', '2015-11-29 01:11:33', 6);
 
 -- --------------------------------------------------------
 
@@ -103,11 +145,12 @@ INSERT INTO `comments` (`id_comment`, `author`, `text`, `date`, `id_article`) VA
 -- Структура таблицы `menu`
 --
 
-CREATE TABLE `menu` (
-  `id_menu` tinyint(3) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `menu` (
+  `id_menu` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `text_menu` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `text_menu` text NOT NULL,
+  PRIMARY KEY (`id_menu`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Дамп данных таблицы `menu`
@@ -124,11 +167,12 @@ INSERT INTO `menu` (`id_menu`, `name`, `text_menu`) VALUES
 -- Структура таблицы `users`
 --
 
-CREATE TABLE `users` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `login` varchar(255) NOT NULL,
-  `password` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `password` varchar(32) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Дамп данных таблицы `users`
@@ -137,69 +181,6 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `login`, `password`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
 
---
--- Индексы сохранённых таблиц
---
-
---
--- Индексы таблицы `articles`
---
-ALTER TABLE `articles`
-  ADD PRIMARY KEY (`id`);
-
---
--- Индексы таблицы `category`
---
-ALTER TABLE `category`
-  ADD PRIMARY KEY (`id_category`);
-
---
--- Индексы таблицы `comments`
---
-ALTER TABLE `comments`
-  ADD PRIMARY KEY (`id_comment`);
-
---
--- Индексы таблицы `menu`
---
-ALTER TABLE `menu`
-  ADD PRIMARY KEY (`id_menu`);
-
---
--- Индексы таблицы `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT для сохранённых таблиц
---
-
---
--- AUTO_INCREMENT для таблицы `articles`
---
-ALTER TABLE `articles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT для таблицы `category`
---
-ALTER TABLE `category`
-  MODIFY `id_category` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT для таблицы `comments`
---
-ALTER TABLE `comments`
-  MODIFY `id_comment` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT для таблицы `menu`
---
-ALTER TABLE `menu`
-  MODIFY `id_menu` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT для таблицы `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

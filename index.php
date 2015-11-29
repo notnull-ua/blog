@@ -13,7 +13,7 @@ header("Content-Type: text/html; charset=utf-8");
 require "classes/DB.class.php";
 require "classes/Core.class.php";
 require "classes/Core_admin.class.php";
-require "classes/Articles.class.php";
+require "classes/articles.class.php";
 require_once "classes/Comments.class.php";
 require "settings.php";
 
