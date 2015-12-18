@@ -18,7 +18,15 @@ require_once "classes/Comments.class.php";
 require "settings.php";
 
  function __autoload($class_name){
-     include 'classes/'.$class_name.'.class.php';
+     $file = 'classes/' . $class_name . '.class.php';
+     if (file_exists("$file")) {
+         include("$file");
+         if (!class_exists("$class_name")) {
+             exit ("<p>Не правильные данные для входа</p>");
+         }
+     } else {
+         exit("<h2>Error 404</h2> <p>Не правильный адресс</p> ");
+     }
  }
 if (isset($_GET['option'])) {
     $class = trim(strip_tags($_GET['option']));
@@ -28,16 +36,3 @@ if (isset($_GET['option'])) {
 
 $obj=new $class;
 $obj->getBody();
-/*$file = 'classes/' . $class . '.class.php';
-if (file_exists("$file")) {
-    include("$file");
-    if (class_exists("$class")) {
-
-        $obj = new $class;
-        $obj->getBody();
-    } else {
-        exit ("<p>Не правильные данные для входа</p>");
-    }
-} else {
-    exit("<h2>Error 404</h2> <p>Не правильный адресс</p> ");
-}*/
